@@ -1,6 +1,6 @@
 {
   "name": "blact",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "act",
   "repository": "https://github.com/blakelapierre/act",
   "main": ".dist/compile.js",
