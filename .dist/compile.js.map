@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["compile.js"],"sourcesContent":["import {transform} from 'babel-core';\nimport es2015 from 'babel-preset-es2015';\nimport jsx from 'babel-plugin-transform-react-jsx';\n\nexport default function compile(text) {\n  return transform(text, {\n    presets: [es2015],\n    plugins: [[jsx, {pragma: 'x'}]]\n  });\n}"],"file":"compile.js"}

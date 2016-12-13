@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["index.js"],"sourcesContent":["import readline from 'readline';\nimport compile from './compile';\n\nimport {stdin, stdout} from 'process';\n\nconst rl = readline.createInterface({input: stdin, output: stdout});\n\nrl.prompt('Enter');\n\nrl.on('line', line => console.log(compile(line).code));"],"file":"index.js"}
