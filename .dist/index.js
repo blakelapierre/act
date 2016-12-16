@@ -1,20 +1,14 @@
-"use strict";
-function $__interopRequire(id) {
-  id = require(id);
-  return id && id.__esModule && id || {default: id};
-}
-var readline = $__interopRequire("readline").default;
-var compile = $__interopRequire("./compile").default;
-var $__3 = require("process"),
-    stdin = $__3.stdin,
-    stdout = $__3.stdout;
-var rl = readline.createInterface({
-  input: stdin,
-  output: stdout
-});
-rl.prompt('Enter');
-rl.on('line', function(line) {
-  return console.log(compile(line).code);
-});
+'use strict';
 
+var _process = require('process');
+
+var _process2 = _interopRequireDefault(_process);
+
+var _cli = require('./cli');
+
+var _cli2 = _interopRequireDefault(_cli);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _cli2.default)(_process2.default);
 //# sourceMappingURL=index.js.map
