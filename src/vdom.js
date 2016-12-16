@@ -12,4 +12,5 @@ export default name =>
     delete global[name];
 
     return {result, root};
-  };
+  }
+;
