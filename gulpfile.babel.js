@@ -63,7 +63,7 @@ gulp.task('runtime', ['transpile'],
   .on('error', function(e) { console.log(e); }));
 
 let devChild = {process: undefined};
-gulp.task('start_dev', ['runtime', 'terminate'],
+gulp.task('start_dev', ['runtime', 'test_bundle', 'terminate'],
   () => {
     const process = devChild.process = child_process.fork(`./${paths.dist}/index.js`);
 
@@ -103,6 +103,18 @@ gulp.task('uglify', ['bundle'],
     ,p('uglify')
     ,uglify()
     ,gulp.dest(paths.package)
+  ]));
+
+gulp.task('test_bundle', ['runtime'],
+  () => pipe([
+    browserify({
+      entries: [`./${paths.dist}/tests/test.js`],
+      builtins: false,
+      detectGlobals: false
+    }).bundle()
+    ,source('test.js')
+    ,p('bundle')
+    ,gulp.dest(paths.dist + '/tests')
   ]));
 
 gulp.task('bundle', ['runtime'],

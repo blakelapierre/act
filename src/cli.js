@@ -2,7 +2,7 @@ import readline from 'readline';
 
 import custom from './custom';
 
-const {compile, vdom} = custom('b');
+const {compile, html, vdom} = custom('b');
 
 export default ({stdin, stdout}) => {
   const rl = readline.createInterface({input: stdin, output: stdout});
@@ -21,6 +21,8 @@ function line(l) {
     const {result, root} = vdom(code);
     console.log({result});
     console.log({root});
+
+    console.log('html', html(root));
   }
   catch (e) { console.log('E', e); }
 }

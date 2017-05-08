@@ -16,6 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _custom = (0, _custom3.default)('b'),
     compile = _custom.compile,
+    html = _custom.html,
     vdom = _custom.vdom;
 
 exports.default = function (_ref) {
@@ -44,6 +45,8 @@ function line(l) {
 
     console.log({ result: result });
     console.log({ root: root });
+
+    console.log('html', html(root));
   } catch (e) {
     console.log('E', e);
   }

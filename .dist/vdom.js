@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,9 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (name) {
   return function (code) {
-    var root = void 0;
+    var result = void 0,
+        root = void 0;
 
-    var i = function i(name, props) {
+    if (name in global) throw Error(name + ' in global!');
+
+    //no support for 'dotted' names (nested namespaces)
+    global[name] = function (name, props) {
       for (var _len = arguments.length, children = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
         children[_key - 2] = arguments[_key];
       }
@@ -16,12 +20,12 @@ exports.default = function (name) {
       return root = { name: name, props: props, children: children };
     };
 
-    if (name in global) throw Error(name + " in global!");
-
-    //no support for 'dotted' names (nested namespaces)
-    global[name] = i;
-
-    var result = eval(code) || {}; // jshint ignore:line
+    try {
+      result = eval(code) || new Error('hold up!'); // jshint ignore:line
+    } catch (e) {
+      delete global[name];
+      throw e;
+    }
 
     delete global[name];
 
